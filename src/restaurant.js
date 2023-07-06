@@ -47,38 +47,34 @@ const createMenu = (menu) => {
     fetchMenu: () => menu,
     consumption: [],
     order: (order) => {
-      if(Object.keys(menu.food).includes(order) || 
-      Object.keys(menu.drinks).includes(order)) {
+      if (Object.keys(menu.food).includes(order) 
+      || Object.keys(menu.drinks).includes(order)) {
         orders.push(order);
-        return restaurant.consumption = orders;
+        restaurant.consumption = orders;
+        return restaurant.consumption;
       }
       return 'Item indisponível';
     },
     pay: () => {
       let payment = 0;
-      for(let i = 0; i < orders.length; i += 1) {
-        if(menu.food[orders[i]]) {
-          payment += menu.food[orders[i]]
+      for (let i = 0; i < orders.length; i += 1) {
+        if (menu.food[orders[i]]) {
+          payment += menu.food[orders[i]];
         }
-        if(menu.drinks[orders[i]]) {
-          payment += menu.drinks[orders[i]]
+        if (menu.drinks[orders[i]]) {
+          payment += menu.drinks[orders[i]];
         }
       }
       return +(payment + (payment * 0.1)).toFixed(2);
     },
-  }
-  return restaurant
+  };
+  return restaurant;
 };
 
 const meuRestaurante = createMenu({
-  food: {coxinha: 3.90, sanduiche: 9.90},
-  drinks: {agua: 3.90, cerveja: 6.90}
+  food: { coxinha: 3.90, sanduiche: 9.90 },
+  drinks: { agua: 3.90, cerveja: 6.90 },
 });
-
-
-
-
-
 
 // Faça o item 5 no arquivo tests/restaurant.spec.js
 
@@ -99,7 +95,5 @@ const meuRestaurante = createMenu({
 // - fará a soma do preço desses itens;
 // - retornará o valor somado acrescido de 10%.
 // DICA: para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
-
-
 
 module.exports = createMenu;
